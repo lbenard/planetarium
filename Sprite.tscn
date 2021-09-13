@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Sprite.gd" type="Script" id=1]
+[ext_resource path="res://Cube.tscn" type="PackedScene" id=2]
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+uniform int rectangle_size = 16;
+
+void fragment() {
+	vec3 mean_color = vec3(0, 0, 0);
+	vec2 rectangle_size_pixels = TEXTURE_PIXEL_SIZE * float(rectangle_size);
+
+	vec2 pixel = rectangle_size_pixels * floor(SCREEN_UV / rectangle_size_pixels);
+	COLOR.rgb = texture(TEXTURE, pixel).rgb;
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+shader_param/rectangle_size = 4
+
+[sub_resource type="ViewportTexture" id=4]
+viewport_path = NodePath("Viewport")
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 1024, 600 )
+own_world = true
+transparent_bg = true
+
+[node name="Cube" parent="Viewport" instance=ExtResource( 2 )]
+
+[node name="ViewportSprite" type="Sprite" parent="."]
+material = SubResource( 3 )
+position = Vector2( 512, 300 )
+texture = SubResource( 4 )
+
+[connection signal="size_changed" from="Viewport" to="." method="_on_Viewport_size_changed"]
