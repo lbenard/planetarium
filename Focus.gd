@@ -56,9 +56,10 @@ func focus(planet):
 	var camera = $Camera;
 	var max_extent =  planet.get_aabb().get_longest_axis_size() * planet.scale.y;
 	var min_distance = (max_extent * margin) / sin(deg2rad(camera.fov / 2.0));
-	var center = Vector3.ZERO;
+	var center = focused_planet.translation;
 
-	camera.look_at(center, Vector3.UP);
 	var offset = Vector3.ONE;
-	scale = center + (offset * min_distance);
+	scale = Vector3.ZERO + (offset * min_distance);
+	translation = center;
+	camera.look_at(center, Vector3.UP);
 	emit_signal("on_focus");
