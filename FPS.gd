@@ -7,7 +7,7 @@ func _process(delta):
 	if delta != 0:
 		while last_frames.size() >= average_range:
 			last_frames.pop_back();
-		var frame_time = 1.0 / delta
+		var frame_time = 1.0 / delta;
 		if frame_time < 5000.0 && frame_time > 0.0:
 			last_frames.push_front(frame_time);
 

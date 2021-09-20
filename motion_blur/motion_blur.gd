@@ -4,7 +4,7 @@ extends MeshInstance
 var cam_pos_prev = Vector3()
 var cam_rot_prev = Quat()
 
-func _process(_delta):
+func _process(delta):
 	
 	#OS.delay_msec(30)
 	
@@ -13,7 +13,7 @@ func _process(_delta):
 	assert(cam is Camera)
 	
 	# Linear velocity is just difference in positions between two frames.
-	var velocity = cam.global_transform.origin - cam_pos_prev
+	var velocity = cam.global_transform.origin - cam_pos_prev / max(abs(delta), 1/60) / 60
 	
 	# Angular velocity is a little more complicated, as you can see.
 	# See https://math.stackexchange.com/questions/160908/how-to-get-angular-velocity-from-difference-orientation-quaternion-and-time

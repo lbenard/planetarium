@@ -29,12 +29,12 @@ script = ExtResource( 2 )
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1 )
 environment = SubResource( 2 )
-fov = 45.0
+fov = 90.0
 near = 0.01
 far = 65536.0
 
 [node name="motion_blur" parent="Camera" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8 )
 visible = false
 mesh = SubResource( 3 )
 

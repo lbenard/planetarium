@@ -1,33 +1,39 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://mars.png" type="Texture" id=1]
 [ext_resource path="res://Earth.gd" type="Script" id=2]
 [ext_resource path="res://FocusCamera.tscn" type="PackedScene" id=3]
+[ext_resource path="res://GalaxyManager.gd" type="Script" id=4]
 [ext_resource path="res://FPS.gd" type="Script" id=5]
+[ext_resource path="res://Test.gd" type="Script" id=6]
+[ext_resource path="res://COPASETI.TTF" type="DynamicFontData" id=7]
 
-[sub_resource type="CubeMesh" id=1]
+[sub_resource type="DynamicFont" id=13]
+size = 198
+use_filter = true
+font_data = ExtResource( 7 )
 
-[sub_resource type="SphereMesh" id=2]
+[sub_resource type="SphereMesh" id=1]
 
-[sub_resource type="VisualShaderNodeInput" id=3]
+[sub_resource type="VisualShaderNodeInput" id=2]
 input_name = "normal"
 
-[sub_resource type="VisualShaderNodeInput" id=4]
+[sub_resource type="VisualShaderNodeInput" id=3]
 input_name = "view"
 
-[sub_resource type="VisualShaderNodeVectorInterp" id=5]
+[sub_resource type="VisualShaderNodeVectorInterp" id=4]
 
-[sub_resource type="VisualShaderNodeScalarConstant" id=6]
+[sub_resource type="VisualShaderNodeScalarConstant" id=5]
 constant = 0.7
 
-[sub_resource type="VisualShaderNodeTexture" id=7]
+[sub_resource type="VisualShaderNodeTexture" id=6]
 texture = ExtResource( 1 )
 texture_type = 1
 
-[sub_resource type="VisualShaderNodeFresnel" id=8]
+[sub_resource type="VisualShaderNodeFresnel" id=7]
 default_input_values = [ 2, false, 3, 5.0 ]
 
-[sub_resource type="VisualShader" id=9]
+[sub_resource type="VisualShader" id=8]
 code = "shader_type spatial;
 render_mode specular_schlick_ggx;
 
@@ -73,45 +79,95 @@ void light() {
 }
 "
 nodes/fragment/0/position = Vector2( 1140, -220 )
-nodes/fragment/2/node = SubResource( 7 )
+nodes/fragment/2/node = SubResource( 6 )
 nodes/fragment/2/position = Vector2( 480, -180 )
-nodes/fragment/9/node = SubResource( 8 )
+nodes/fragment/9/node = SubResource( 7 )
 nodes/fragment/9/position = Vector2( 480, -360 )
-nodes/fragment/11/node = SubResource( 3 )
+nodes/fragment/11/node = SubResource( 2 )
 nodes/fragment/11/position = Vector2( 100, -400 )
-nodes/fragment/12/node = SubResource( 4 )
+nodes/fragment/12/node = SubResource( 3 )
 nodes/fragment/12/position = Vector2( 100, -320 )
-nodes/fragment/15/node = SubResource( 5 )
+nodes/fragment/15/node = SubResource( 4 )
 nodes/fragment/15/position = Vector2( 860, -220 )
-nodes/fragment/17/node = SubResource( 6 )
+nodes/fragment/17/node = SubResource( 5 )
 nodes/fragment/17/position = Vector2( 480, -480 )
 nodes/fragment/connections = PoolIntArray( 11, 0, 9, 0, 12, 0, 9, 1, 2, 0, 15, 1, 17, 0, 15, 2, 15, 0, 0, 0, 9, 0, 15, 0 )
 
-[sub_resource type="ShaderMaterial" id=10]
-shader = SubResource( 9 )
+[sub_resource type="ShaderMaterial" id=9]
+shader = SubResource( 8 )
 
-[sub_resource type="SphereMesh" id=11]
+[sub_resource type="SphereMesh" id=10]
 radius = 200.0
 height = 400.0
 
+[sub_resource type="Shader" id=11]
+code = "shader_type spatial;
+
+uniform float beer_factor : hint_range(0.0, 20.0) = 0.1;
+uniform vec4 out_color : hint_color = vec4(0.0, 0.2, 1.0, 1.0);
+uniform float explosiveness : hint_range(0.001, 1.0) = 0.2;
+uniform float emission_energy : hint_range(0, 2.0) = 1.0;
+
+
+float generateOffset(float x, float y, float z, float val1, float val2, float time){
+	float speed = 1.0;
+	
+	float radiansX = ((mod(x + z * x * val1, explosiveness) / explosiveness) + (time * speed) * mod(x * 0.8 + z, 1.5)) * 2.0 * 3.14;
+	float radiansY = ((mod(val2 * (z * x + x * z + y * x + y * z), explosiveness) / explosiveness) + (time * speed) * 2.0 * mod(x,2.0)) * 2.0 * 3.14;
+	float radiansZ = ((mod(val2 * (z * x + x * z), explosiveness) / explosiveness) + (time * speed) * 2.0 * mod(x,2.0)) * 2.0 * 3.14;
+
+	return explosiveness * 0.5 * (sin(radiansZ) + cos(radiansX) + cos(radiansY));
+}
+
+vec3 applyDistortion(vec3 vertex, float time){
+	float xd = generateOffset(vertex.x, vertex.y, vertex.z, 0.2, 0.1, time);
+	float yd = generateOffset(vertex.x, vertex.y, vertex.z, 0.1, 0.3, time);
+	float zd = generateOffset(vertex.x, vertex.y, vertex.z, 0.15, 0.2, time);
+	return vertex + vec3(xd, yd, zd);
+}
+
+void vertex(){
+	VERTEX = applyDistortion(VERTEX, TIME * 0.1);
+}
+
+void fragment(){
+	
+	NORMAL = normalize(cross(dFdx(VERTEX), dFdy(VERTEX)));
+	
+	ALBEDO = out_color.xyz;
+	METALLIC = 0.6;
+	SPECULAR = 0.5;
+	ROUGHNESS = 0.2;
+	
+	EMISSION = out_color.rgb * emission_energy;
+	
+	float depth = texture(DEPTH_TEXTURE, SCREEN_UV).r;
+	
+	depth = depth * 2.0 - 1.0;
+	depth = PROJECTION_MATRIX[3][2] / (depth + PROJECTION_MATRIX[2][2]);
+	depth = depth + VERTEX.z;
+	
+	depth = exp(-depth * beer_factor);
+	ALPHA = clamp(1.0 - depth, 0.0, 1.0);
+	//ALPHA = 0.5;
+	
+
+}
+
+"
+
+[sub_resource type="ShaderMaterial" id=12]
+shader = SubResource( 11 )
+shader_param/beer_factor = 0.1
+shader_param/out_color = Color( 0.929412, 1, 0, 1 )
+shader_param/explosiveness = 0.2
+shader_param/emission_energy = 1.0
+
 [node name="Spatial" type="Spatial"]
 
-[node name="MeshInstance2" type="MeshInstance" parent="."]
-transform = Transform( 0.707107, 0, -0.707107, -0.353553, 0.866025, -0.353553, 0.612372, 0.5, 0.612372, 0, 0, 0 )
-visible = false
-mesh = SubResource( 1 )
-material/0 = null
+[node name="UI" type="Node2D" parent="."]
 
-[node name="OmniLight" type="OmniLight" parent="."]
-omni_range = 4096.0
-
-[node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 8, 0, 8 )
-visible = false
-
-[node name="Node2D" type="Node2D" parent="."]
-
-[node name="FPS" type="Label" parent="Node2D"]
+[node name="FPS" type="Label" parent="UI"]
 margin_right = 40.0
 margin_bottom = 14.0
 text = "FPS: -1"
@@ -121,18 +177,35 @@ __meta__ = {
 }
 average_range = 1000
 
+[node name="Test" type="Label" parent="UI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_right = 1018.0
+margin_bottom = 183.0
+custom_fonts/font = SubResource( 13 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "LE SOLEIL MDR"
+align = 1
+valign = 1
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="FocusCamera" parent="." instance=ExtResource( 3 )]
 
 [node name="PlanetManager" type="Node" parent="."]
 
-[node name="Earth" type="MeshInstance" parent="PlanetManager"]
-transform = Transform( -0.866026, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866026, 1000, 0, 0 )
-mesh = SubResource( 2 )
-material/0 = SubResource( 10 )
+[node name="Mars" type="MeshInstance" parent="PlanetManager"]
+transform = Transform( -0.866026, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866026, 999.985, -2.86102e-06, 0.00465584 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 9 )
 script = ExtResource( 2 )
 rotation_speed = 5
 
-[node name="CSGTorus" type="CSGTorus" parent="PlanetManager/Earth"]
+[node name="Orbit" type="CSGTorus" parent="PlanetManager/Mars"]
 transform = Transform( 1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, 1, 0, 0, 0 )
 inner_radius = 5.0
 outer_radius = 5.01
@@ -140,11 +213,13 @@ sides = 64
 ring_sides = 64
 
 [node name="Sun" type="MeshInstance" parent="."]
-mesh = SubResource( 11 )
-material/0 = null
+mesh = SubResource( 10 )
+material/0 = SubResource( 12 )
 
-[node name="CSGTorus" type="CSGTorus" parent="Sun"]
-inner_radius = 1000.0
-outer_radius = 1000.1
-sides = 64
-ring_sides = 64
+[node name="OmniLight" type="OmniLight" parent="Sun"]
+omni_range = 4096.0
+
+[node name="GalaxyManager" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="Spatial" type="Spatial" parent="GalaxyManager"]
