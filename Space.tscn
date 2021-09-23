@@ -1,12 +1,13 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://mars.png" type="Texture" id=1]
 [ext_resource path="res://Earth.gd" type="Script" id=2]
 [ext_resource path="res://FocusCamera.tscn" type="PackedScene" id=3]
 [ext_resource path="res://GalaxyManager.gd" type="Script" id=4]
 [ext_resource path="res://FPS.gd" type="Script" id=5]
-[ext_resource path="res://Test.gd" type="Script" id=6]
+[ext_resource path="res://LabelTest.gd" type="Script" id=6]
 [ext_resource path="res://COPASETI.TTF" type="DynamicFontData" id=7]
+[ext_resource path="res://Galaxy.tscn" type="PackedScene" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 198
@@ -164,6 +165,8 @@ shader_param/out_color = Color( 1, 0.615686, 0, 1 )
 shader_param/explosiveness = 0.2
 shader_param/emission_energy = 1.0
 
+[sub_resource type="OpenSimplexNoise" id=14]
+
 [node name="Spatial" type="Spatial"]
 
 [node name="UI" type="Node2D" parent="."]
@@ -178,7 +181,8 @@ __meta__ = {
 }
 average_range = 1000
 
-[node name="Test" type="Label" parent="UI"]
+[node name="LabelTest" type="Label" parent="UI"]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -222,5 +226,5 @@ omni_range = 4096.0
 
 [node name="GalaxyManager" type="Node" parent="."]
 script = ExtResource( 4 )
-
-[node name="Spatial2" type="Spatial" parent="GalaxyManager"]
+scene = ExtResource( 8 )
+noise = SubResource( 14 )

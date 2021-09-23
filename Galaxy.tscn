@@ -3,6 +3,7 @@
 [ext_resource path="res://Galaxy.gd" type="Script" id=1]
 
 [sub_resource type="OpenSimplexNoise" id=1]
+seed = 42
 
 [node name="Galaxy" type="Node"]
 script = ExtResource( 1 )

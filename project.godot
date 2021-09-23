@@ -8,15 +8,44 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node",
+"class": "Galaxy",
+"language": "GDScript",
+"path": "res://Galaxy.gd"
+}, {
+"base": "StellarManager",
+"class": "SolarSystem",
+"language": "GDScript",
+"path": "res://SolarSystem.gd"
+}, {
+"base": "Spatial",
+"class": "Stellar",
+"language": "GDScript",
+"path": "res://Stellar.gd"
+}, {
+"base": "Node",
+"class": "StellarManager",
+"language": "GDScript",
+"path": "res://StellarManager.gd"
+} ]
+_global_script_class_icons={
+"Galaxy": "",
+"SolarSystem": "",
+"Stellar": "",
+"StellarManager": ""
+}
+
 [application]
 
 config/name="SpaceSim"
 run/main_scene="res://Space.tscn"
 config/icon="res://icon.png"
 
-[display]
+[debug]
 
-window/vsync/use_vsync=false
+gdscript/warnings/shadowed_variable=false
+gdscript/warnings/return_value_discarded=false
 
 [input]
 

@@ -1,16 +1,8 @@
-tool
-extends Node
+extends StellarManager
 
-export var galaxies: Array;
-
-class Galaxy:
-	var name: String;
-	var planetary_systems: Array;
+export(OpenSimplexNoise) var noise = OpenSimplexNoise.new();
+var noise_seed = 0;
 
 func _ready():
-	for child in get_children():
-		child.queue_free();
-	if Engine.editor_hint:
-		var node = Spatial.new();
-		add_child(node);
-		node.set_owner(get_tree().edited_scene_root);
+	randomize();
+	noise_seed = randi();
