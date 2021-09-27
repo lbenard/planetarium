@@ -12,25 +12,31 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Galaxy",
 "language": "GDScript",
-"path": "res://Galaxy.gd"
+"path": "res://galaxy.gd"
+}, {
+"base": "Reference",
+"class": "GaussianRandom",
+"language": "GDScript",
+"path": "res://gaussian_random.gd"
 }, {
 "base": "StellarManager",
 "class": "SolarSystem",
 "language": "GDScript",
-"path": "res://SolarSystem.gd"
+"path": "res://solar_system.gd"
 }, {
 "base": "Spatial",
 "class": "Stellar",
 "language": "GDScript",
-"path": "res://Stellar.gd"
+"path": "res://stellar.gd"
 }, {
 "base": "Node",
 "class": "StellarManager",
 "language": "GDScript",
-"path": "res://StellarManager.gd"
+"path": "res://stellar_manager.gd"
 } ]
 _global_script_class_icons={
 "Galaxy": "",
+"GaussianRandom": "",
 "SolarSystem": "",
 "Stellar": "",
 "StellarManager": ""
@@ -39,13 +45,18 @@ _global_script_class_icons={
 [application]
 
 config/name="SpaceSim"
-run/main_scene="res://Space.tscn"
+run/main_scene="res://map/map.tscn"
 config/icon="res://icon.png"
 
 [debug]
 
 gdscript/warnings/shadowed_variable=false
 gdscript/warnings/return_value_discarded=false
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
 
 [input]
 
