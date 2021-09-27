@@ -9,10 +9,10 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node",
+"base": "Stellar",
 "class": "Galaxy",
 "language": "GDScript",
-"path": "res://galaxy.gd"
+"path": "res://stellar/galaxy/galaxy.gd"
 }, {
 "base": "Reference",
 "class": "GaussianRandom",
@@ -27,12 +27,12 @@ _global_script_classes=[ {
 "base": "Spatial",
 "class": "Stellar",
 "language": "GDScript",
-"path": "res://stellar.gd"
+"path": "res://stellar/stellar.gd"
 }, {
 "base": "Node",
 "class": "StellarManager",
 "language": "GDScript",
-"path": "res://stellar_manager.gd"
+"path": "res://stellar/stellar_manager.gd"
 } ]
 _global_script_class_icons={
 "Galaxy": "",
@@ -55,8 +55,8 @@ gdscript/warnings/return_value_discarded=false
 
 [display]
 
-window/size/width=1920
-window/size/height=1080
+window/size/width=1280
+window/size/height=720
 
 [input]
 

@@ -1,20 +1,8 @@
-[gd_resource type="Theme" load_steps=6 format=2]
+[gd_resource type="Theme" load_steps=4 format=2]
 
 [ext_resource path="res://fonts/code_bold.tres" type="DynamicFont" id=1]
 
 [sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.227792, 0.2175, 0.25, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_blend = true
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id=2]
 content_margin_left = 16.0
 content_margin_right = 16.0
 content_margin_top = 16.0
@@ -32,40 +20,34 @@ corner_radius_bottom_left = 20
 shadow_color = Color( 0, 0, 0, 0.345098 )
 shadow_size = 2
 
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.196078, 0.172549, 0.247059, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_left = 16.0
+content_margin_right = 16.0
+content_margin_top = 16.0
+content_margin_bottom = 12.0
+bg_color = Color( 0.254902, 0.223529, 0.321569, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
 border_blend = true
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 0.4293, 0.378, 0.54, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_blend = true
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color( 0, 0, 0, 0.345098 )
+shadow_size = 2
 
 [resource]
 default_font = ExtResource( 1 )
 Button/colors/font_color = Color( 0.941176, 0.941176, 0.941176, 1 )
-Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.45098 )
-Button/colors/font_color_hover = Color( 0.329412, 0.329412, 0.329412, 1 )
+Button/colors/font_color_disabled = Color( 0.37, 0.37, 0.37, 0.403922 )
+Button/colors/font_color_hover = Color( 0.56, 0.56, 0.56, 1 )
 Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
 Button/constants/hseparation = 2
 Button/fonts/font = null
 Button/styles/disabled = SubResource( 1 )
 Button/styles/focus = SubResource( 2 )
-Button/styles/hover = SubResource( 3 )
-Button/styles/normal = SubResource( 2 )
-Button/styles/pressed = SubResource( 4 )
+Button/styles/hover = SubResource( 2 )
+Button/styles/normal = SubResource( 1 )
+Button/styles/pressed = SubResource( 1 )

@@ -5,9 +5,10 @@
 [ext_resource path="res://fonts/COPASETI.TTF" type="DynamicFontData" id=3]
 [ext_resource path="res://focus_camera.tscn" type="PackedScene" id=4]
 [ext_resource path="res://mars.png" type="Texture" id=5]
-[ext_resource path="res://galaxy_manager.gd" type="Script" id=6]
+[ext_resource path="res://stellar/galaxy/galaxy_manager.gd" type="Script" id=6]
 [ext_resource path="res://galaxy.tscn" type="PackedScene" id=7]
 [ext_resource path="res://earth.gd" type="Script" id=8]
+[ext_resource path="res://stellar_scout.gd" type="Script" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 198
@@ -165,8 +166,6 @@ shader_param/out_color = Color( 1, 0.615686, 0, 1 )
 shader_param/explosiveness = 0.2
 shader_param/emission_energy = 1.0
 
-[sub_resource type="OpenSimplexNoise" id=14]
-
 [node name="Spatial" type="Spatial"]
 
 [node name="UI" type="Node2D" parent="."]
@@ -227,4 +226,6 @@ omni_range = 4096.0
 [node name="GalaxyManager" type="Node" parent="."]
 script = ExtResource( 6 )
 scene = ExtResource( 7 )
-noise = SubResource( 14 )
+
+[node name="StellarScout" type="Node" parent="GalaxyManager"]
+script = ExtResource( 9 )
