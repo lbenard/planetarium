@@ -5,7 +5,7 @@
 
 [sub_resource type="OpenSimplexNoise" id=1]
 
-[node name="Node" type="Node"]
+[node name="GalaxyManager" type="Node"]
 script = ExtResource( 1 )
 stellar_scene = ExtResource( 2 )
 noise = SubResource( 1 )

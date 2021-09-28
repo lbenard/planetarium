@@ -1,5 +1,8 @@
 extends StellarManager
 
+func _ready():
+	pass
+
 var chunk_length = 16;
 var rng: RandomNumberGenerator = RandomNumberGenerator.new();
 
@@ -24,4 +27,4 @@ func _noise_2d(pos: Vector2) -> float:
 	return clamp((noise.get_noise_2d(pos.x, pos.y) + 1.0) / 2.0 - 0.3, 0.0, 1.0);
 
 func get_class() -> String:
-	return "GalaxyManager";
+	return "SolarSystemManager";

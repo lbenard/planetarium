@@ -11,7 +11,10 @@ var rotation_velocity = Vector2.ZERO;
 signal on_focus;
 
 func _ready():
-	focus(get_parent().get_node("PlanetManager").get_children()[0]);
+	get_parent().print_tree();
+	get_parent().get_node("GalaxyManager").print_tree();
+	#focus(get_parent().get_node("GalaxyManager").get_children()[0].get_node("SolarSystemManager").get_children()[0].get_node("PlanetManager").get_children()[0]);
+	#focus(get_parent().get_node("PlanetManager").get_children()[0]);
 
 func _process(delta):
 	var mouse_pos = get_viewport().get_mouse_position();
