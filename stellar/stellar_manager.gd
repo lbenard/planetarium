@@ -2,14 +2,14 @@ extends Node
 class_name StellarManager
 
 class Chunk:
-	var stellar = null;
-	var stellar_relative_pos: Vector2 = Vector2.ZERO;
+	var stellars: Array = [];
 
 var chunks = {};
-export var noise_seed: int = randi();
 export(PackedScene) var stellar_scene;
+export(OpenSimplexNoise) var noise = OpenSimplexNoise.new()
+export var noise_seed: int = randi();
 
-export var chunk_length: int = 16;
+#export var chunk_length: int = 16;
 
 func _init():
 	pass
@@ -21,8 +21,12 @@ func get_chunk(pos: Vector2) -> Chunk:
 	if pos in chunks:
 		return chunks[pos];
 	else:
-		var new_scene = stellar_scene.instance();
-		new_scene.position
-		add_child(new_scene);
-		chunks[pos] = new_scene;
-		return new_scene;
+		var chunk = _generate_chunk(pos);
+		for stellar in chunk.stellars:
+			add_child(stellar);
+		chunks[pos] = chunk;
+		return chunk;
+
+# To override
+func _generate_chunk(pos: Vector2) -> Chunk:
+	return Chunk.new();
