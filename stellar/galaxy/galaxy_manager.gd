@@ -1,11 +1,17 @@
 extends StellarManager
+class_name GalaxyManager
 
-var chunk_length = 16;
-var rng: RandomNumberGenerator = RandomNumberGenerator.new();
+var rng: RandomNumberGenerator;
+var noise: OpenSimplexNoise;
+
+func _init():
+	chunk_length = 16;
+	rng = RandomNumberGenerator.new();
+	noise = OpenSimplexNoise.new();
 
 func _generate_chunk(pos: Vector2) -> Chunk:
 	var chunk = ._generate_chunk(pos);
-	var real_coordinate = pos * chunk_length;
+	var real_coordinate = pos * 16;
 	var density = _noise_2d(real_coordinate);
 	var base_seed = str(real_coordinate.x) + "/" + str(real_coordinate.y);
 	rng.seed = base_seed.hash();

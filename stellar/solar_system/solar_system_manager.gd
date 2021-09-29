@@ -1,10 +1,11 @@
 extends StellarManager
+class_name SolarSystemManager
 
 func _ready():
 	pass
 
-var chunk_length = 16;
 var rng: RandomNumberGenerator = RandomNumberGenerator.new();
+var noise = OpenSimplexNoise.new();
 
 func _generate_chunk(pos: Vector2) -> Chunk:
 	var chunk = ._generate_chunk(pos);

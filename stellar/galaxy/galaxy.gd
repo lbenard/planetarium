@@ -1,6 +1,8 @@
 extends Stellar
 class_name Galaxy
 
+onready var solar_system_manager: SolarSystemManager = $SolarSystemManager;
+
 #export(OpenSimplexNoise) var noise = OpenSimplexNoise.new();
 #var solar_system_scene = preload("res://solar_system.tscn");
 #var solar_systems = {};

@@ -14,15 +14,25 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://stellar/galaxy/galaxy.gd"
 }, {
+"base": "StellarManager",
+"class": "GalaxyManager",
+"language": "GDScript",
+"path": "res://stellar/galaxy/galaxy_manager.gd"
+}, {
 "base": "Reference",
 "class": "GaussianRandom",
 "language": "GDScript",
 "path": "res://gaussian_random.gd"
 }, {
-"base": "StellarManager",
+"base": "Stellar",
 "class": "SolarSystem",
 "language": "GDScript",
-"path": "res://solar_system.gd"
+"path": "res://stellar/solar_system/solar_system.gd"
+}, {
+"base": "StellarManager",
+"class": "SolarSystemManager",
+"language": "GDScript",
+"path": "res://stellar/solar_system/solar_system_manager.gd"
 }, {
 "base": "Spatial",
 "class": "Stellar",
@@ -36,8 +46,10 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Galaxy": "",
+"GalaxyManager": "",
 "GaussianRandom": "",
 "SolarSystem": "",
+"SolarSystemManager": "",
 "Stellar": "",
 "StellarManager": ""
 }
@@ -57,6 +69,7 @@ gdscript/warnings/return_value_discarded=false
 
 window/size/width=1280
 window/size/height=720
+window/vsync/use_vsync=false
 
 [input]
 
