@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://gaussian_random.gd"
 }, {
+"base": "Resource",
+"class": "ResourcesSet",
+"language": "GDScript",
+"path": "res://resources/resources_set.gd"
+}, {
 "base": "Stellar",
 "class": "SolarSystem",
 "language": "GDScript",
@@ -48,6 +53,7 @@ _global_script_class_icons={
 "Galaxy": "",
 "GalaxyManager": "",
 "GaussianRandom": "",
+"ResourcesSet": "",
 "SolarSystem": "",
 "SolarSystemManager": "",
 "Stellar": "",
