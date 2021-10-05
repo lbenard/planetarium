@@ -11,7 +11,6 @@ panorama = ExtResource( 1 )
 background_mode = 2
 background_sky = SubResource( 1 )
 auto_exposure_enabled = true
-glow_enabled = true
 
 [sub_resource type="QuadMesh" id=3]
 size = Vector2( 40, 20 )
@@ -29,7 +28,7 @@ script = ExtResource( 2 )
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1 )
 environment = SubResource( 2 )
-fov = 90.0
+fov = 75.0
 near = 0.01
 far = 65536.0
 

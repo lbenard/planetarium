@@ -4,7 +4,7 @@
 [ext_resource path="res://space.gd" type="Script" id=2]
 [ext_resource path="res://resources_set_test.gd" type="Script" id=3]
 [ext_resource path="res://focus_camera.tscn" type="PackedScene" id=4]
-[ext_resource path="res://stellar/galaxy/galaxy_manager.tscn" type="PackedScene" id=6]
+[ext_resource path="res://formation/universe/universe.tscn" type="PackedScene" id=5]
 
 [node name="Space" type="Spatial"]
 script = ExtResource( 2 )
@@ -21,9 +21,9 @@ __meta__ = {
 }
 average_range = 1000
 
-[node name="FocusCamera" parent="." instance=ExtResource( 4 )]
-
-[node name="GalaxyManager" parent="." instance=ExtResource( 6 )]
-
 [node name="ResourcesSetTest" type="Node" parent="."]
 script = ExtResource( 3 )
+
+[node name="FocusCamera" parent="." instance=ExtResource( 4 )]
+
+[node name="Universe" parent="." instance=ExtResource( 5 )]

@@ -4,15 +4,17 @@
 
 class_name GaussianRandom
 
-static func uniform_gaussian() -> float:
+export(Resource) var rng = RandomNumberGenerator.new();
+
+func uniform_gaussian() -> float:
 	var v1: float
 	var v2: float
 	var s: float
 	var firstPass = true
 
 	while firstPass or s >= 1.0 or s == 0:
-		v1 = 2.0 * randf() - 1.0
-		v2 = 2.0 * randf() - 1.0
+		v1 = 2.0 * rng.randf() - 1.0
+		v2 = 2.0 * rng.randf() - 1.0
 		s = v1 * v1 + v2 * v2
 		firstPass = false
 
@@ -20,14 +22,14 @@ static func uniform_gaussian() -> float:
 
 	return v1 * s
 
-static func gaussian(mean: float, standard_deviation: float) -> float:
+func gaussian(mean: float, standard_deviation: float) -> float:
 	return mean + uniform_gaussian() * standard_deviation
 
-static func gaussian_clamp(mean: float, standard_deviation: float, _min: float, _max: float) -> float:
+func gaussian_clamp(mean: float, standard_deviation: float, _min = null, _max = null) -> float:
 	var x: float
 	var firstPass = true
 
-	while firstPass or x < _min or x > _max:
+	while firstPass or (_min != null and x < _min) or (_max != null and x > _max):
 		x = gaussian(mean, standard_deviation)
 		firstPass = false
 	return x

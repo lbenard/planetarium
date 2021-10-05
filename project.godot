@@ -9,55 +9,55 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Stellar",
+"base": "Spatial",
+"class": "Formation",
+"language": "GDScript",
+"path": "res://formation/formation.gd"
+}, {
+"base": "Formation",
 "class": "Galaxy",
 "language": "GDScript",
-"path": "res://stellar/galaxy/galaxy.gd"
-}, {
-"base": "StellarManager",
-"class": "GalaxyManager",
-"language": "GDScript",
-"path": "res://stellar/galaxy/galaxy_manager.gd"
+"path": "res://formation/galaxy/galaxy.gd"
 }, {
 "base": "Reference",
 "class": "GaussianRandom",
 "language": "GDScript",
 "path": "res://gaussian_random.gd"
 }, {
+"base": "Stellar",
+"class": "Planet",
+"language": "GDScript",
+"path": "res://stellar/planet/planet.gd"
+}, {
 "base": "Resource",
 "class": "ResourcesSet",
 "language": "GDScript",
 "path": "res://resources/resources_set.gd"
 }, {
-"base": "Stellar",
+"base": "Formation",
 "class": "SolarSystem",
 "language": "GDScript",
-"path": "res://stellar/solar_system/solar_system.gd"
-}, {
-"base": "StellarManager",
-"class": "SolarSystemManager",
-"language": "GDScript",
-"path": "res://stellar/solar_system/solar_system_manager.gd"
+"path": "res://formation/solar_system/solar_system.gd"
 }, {
 "base": "Spatial",
 "class": "Stellar",
 "language": "GDScript",
 "path": "res://stellar/stellar.gd"
 }, {
-"base": "Node",
-"class": "StellarManager",
+"base": "Formation",
+"class": "Universe",
 "language": "GDScript",
-"path": "res://stellar/stellar_manager.gd"
+"path": "res://formation/universe/universe.gd"
 } ]
 _global_script_class_icons={
+"Formation": "",
 "Galaxy": "",
-"GalaxyManager": "",
 "GaussianRandom": "",
+"Planet": "",
 "ResourcesSet": "",
 "SolarSystem": "",
-"SolarSystemManager": "",
 "Stellar": "",
-"StellarManager": ""
+"Universe": ""
 }
 
 [application]
@@ -81,19 +81,27 @@ window/vsync/use_vsync=false
 
 3d_zoom={
 "deadzone": 0.5,
-"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":4,"pressed":false,"doubleclick":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777235,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777235,"unicode":0,"echo":false,"script":null)
  ]
 }
 3d_dezoom={
 "deadzone": 0.5,
-"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":5,"pressed":false,"doubleclick":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777236,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777236,"unicode":0,"echo":false,"script":null)
  ]
 }
 3d_drag={
 "deadzone": 0.5,
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":3,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+3d_zoom_mouse={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":4,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+3d_dezoom_mouse={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":5,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 
