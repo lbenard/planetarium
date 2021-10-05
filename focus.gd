@@ -1,9 +1,10 @@
 extends Spatial
 
-export onready var focused_planet: Planet;
-export var margin = 1.0;
-export var zoom_speed = 1.0;
-export var drag_speed = 2.0;
+onready var focused_planet: Planet;
+onready var planet_label: Label = get_parent().get_node("UI/Control/VBoxContainer/HBoxContainer/PlanetName");
+var margin = 1.0;
+var zoom_speed = 1.0;
+var drag_speed = 2.0;
 
 var drag_previous_pos: Vector2;
 var rotation_velocity = Vector2.ZERO;
@@ -76,4 +77,6 @@ func focus(planet):
 	scale = Vector3.ZERO + (offset * min_distance);
 	translation = center;
 	camera.look_at(center, Vector3.UP);
+	
+	planet_label.text = focused_planet.name;
 	emit_signal("on_focus");

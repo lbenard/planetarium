@@ -35,6 +35,7 @@ func _ready():
 		
 		var color = Color.from_hsv(rng.randf(), 0.5, 1.0);
 		new_planet = Planet.new();
+		new_planet.name = 'Planet ' + str(n + 1);
 		new_planet.init(sun, radius, distance, color);
 		
 		print_debug("Spawned planet at a distance of " + str(distance));
