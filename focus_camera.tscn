@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://hdr.png" type="Texture" id=1]
 [ext_resource path="res://focus.gd" type="Script" id=2]
-[ext_resource path="res://motion_blur/motion_blur.tscn" type="PackedScene" id=4]
 
 [sub_resource type="PanoramaSky" id=1]
 panorama = ExtResource( 1 )
@@ -12,15 +11,12 @@ background_mode = 2
 background_sky = SubResource( 1 )
 auto_exposure_enabled = true
 
-[sub_resource type="QuadMesh" id=3]
-size = Vector2( 40, 20 )
-
-[sub_resource type="PanoramaSky" id=4]
+[sub_resource type="PanoramaSky" id=3]
 panorama = ExtResource( 1 )
 
-[sub_resource type="Environment" id=5]
+[sub_resource type="Environment" id=4]
 background_mode = 2
-background_sky = SubResource( 4 )
+background_sky = SubResource( 3 )
 
 [node name="FocusCamera" type="Spatial"]
 script = ExtResource( 2 )
@@ -32,10 +28,5 @@ fov = 75.0
 near = 0.01
 far = 65536.0
 
-[node name="motion_blur" parent="Camera" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8 )
-visible = false
-mesh = SubResource( 3 )
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 5 )
+environment = SubResource( 4 )
