@@ -16,4 +16,4 @@ func _process(delta):
 			total += frame;
 		var average = total / last_frames.size();
 
-		text = "FPS: " + str(average);
+		text = "FPS: " + str(int(average));
