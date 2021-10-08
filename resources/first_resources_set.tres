@@ -4,4 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
+test = {
+}
 iron_per_second = 1
+copper_per_second = 0
