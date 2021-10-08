@@ -1,8 +1,6 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://formation/solar_system/solar_system.gd" type="Script" id=1]
-[ext_resource path="res://earth.gd" type="Script" id=2]
-[ext_resource path="res://mars.png" type="Texture" id=3]
 
 [sub_resource type="SphereMesh" id=1]
 radius = 200.0
@@ -71,90 +69,6 @@ shader_param/out_color = Color( 1, 0.796078, 0.470588, 1 )
 shader_param/explosiveness = 0.2
 shader_param/emission_energy = 1.0
 
-[sub_resource type="SphereMesh" id=4]
-
-[sub_resource type="VisualShaderNodeInput" id=5]
-input_name = "normal"
-
-[sub_resource type="VisualShaderNodeInput" id=6]
-input_name = "view"
-
-[sub_resource type="VisualShaderNodeVectorInterp" id=7]
-
-[sub_resource type="VisualShaderNodeScalarConstant" id=8]
-constant = 0.7
-
-[sub_resource type="VisualShaderNodeTexture" id=9]
-texture = ExtResource( 3 )
-texture_type = 1
-
-[sub_resource type="VisualShaderNodeFresnel" id=10]
-default_input_values = [ 2, false, 3, 5.0 ]
-
-[sub_resource type="VisualShader" id=11]
-code = "shader_type spatial;
-render_mode specular_schlick_ggx;
-
-uniform sampler2D tex_frg_2 : hint_albedo;
-
-
-
-void vertex() {
-// Output:0
-
-}
-
-void fragment() {
-// Input:11
-	vec3 n_out11p0 = NORMAL;
-
-// Input:12
-	vec3 n_out12p0 = VIEW;
-
-// Fresnel:9
-	float n_in9p3 = 5.00000;
-	float n_out9p0 = pow(1.0 - clamp(dot(n_out11p0, n_out12p0), 0.0, 1.0), n_in9p3);
-
-// Texture:2
-	vec4 tex_frg_2_read = texture(tex_frg_2, UV.xy);
-	vec3 n_out2p0 = tex_frg_2_read.rgb;
-	float n_out2p1 = tex_frg_2_read.a;
-
-// Scalar:17
-	float n_out17p0 = 0.700000;
-
-// VectorMix:15
-	vec3 n_out15p0 = mix(vec3(n_out9p0), n_out2p0, vec3(n_out17p0));
-
-// Output:0
-	ALBEDO = n_out15p0;
-
-}
-
-void light() {
-// Output:0
-
-}
-"
-graph_offset = Vector2( -98.6667, -300 )
-nodes/fragment/0/position = Vector2( 1020, -220 )
-nodes/fragment/2/node = SubResource( 9 )
-nodes/fragment/2/position = Vector2( 480, -180 )
-nodes/fragment/9/node = SubResource( 10 )
-nodes/fragment/9/position = Vector2( 480, -300 )
-nodes/fragment/11/node = SubResource( 5 )
-nodes/fragment/11/position = Vector2( 260, -320 )
-nodes/fragment/12/node = SubResource( 6 )
-nodes/fragment/12/position = Vector2( 260, -240 )
-nodes/fragment/15/node = SubResource( 7 )
-nodes/fragment/15/position = Vector2( 860, -220 )
-nodes/fragment/17/node = SubResource( 8 )
-nodes/fragment/17/position = Vector2( 680, -160 )
-nodes/fragment/connections = PoolIntArray( 11, 0, 9, 0, 12, 0, 9, 1, 2, 0, 15, 1, 17, 0, 15, 2, 15, 0, 0, 0, 9, 0, 15, 0 )
-
-[sub_resource type="ShaderMaterial" id=12]
-shader = SubResource( 11 )
-
 [node name="SolarSystem" type="Spatial"]
 script = ExtResource( 1 )
 
@@ -165,18 +79,3 @@ material/0 = SubResource( 3 )
 [node name="OmniLight" type="OmniLight" parent="Sun"]
 omni_range = 8192.0
 omni_attenuation = 5.65685
-
-[node name="Mars" type="MeshInstance" parent="."]
-transform = Transform( -0.866026, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866026, 999.985, 0, 0 )
-visible = false
-mesh = SubResource( 4 )
-material/0 = SubResource( 12 )
-script = ExtResource( 2 )
-rotation_speed = 5
-
-[node name="Orbit" type="CSGTorus" parent="Mars"]
-transform = Transform( 1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, 1, 0, 0, 0 )
-inner_radius = 5.0
-outer_radius = 5.01
-sides = 64
-ring_sides = 64
