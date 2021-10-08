@@ -1,0 +1,84 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://fps.gd" type="Script" id=1]
+[ext_resource path="res://fonts/code_bold.tres" type="DynamicFont" id=2]
+[ext_resource path="res://planet_name.gd" type="Script" id=3]
+[ext_resource path="res://space.tscn" type="PackedScene" id=4]
+[ext_resource path="res://map/icon.png" type="Texture" id=5]
+
+[node name="Game" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 1920.0
+margin_bottom = 34.0
+alignment = 1
+
+[node name="FPS" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_right = 637.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "FPS: -1"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+average_range = 1000
+
+[node name="PlanetName" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_left = 641.0
+margin_right = 1278.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "PLANET NAME"
+align = 1
+valign = 1
+script = ExtResource( 3 )
+
+[node name="Padding" type="Control" parent="VBoxContainer/HBoxContainer"]
+margin_left = 1282.0
+margin_right = 1920.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+margin_top = 38.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+visible = false
+margin_left = 0.256
+margin_top = 680.0
+margin_right = 1280.26
+margin_bottom = 720.0
+rect_min_size = Vector2( 0.123, 0 )
+custom_fonts/font = ExtResource( 2 )
+text = "Map"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Button"]
+margin_right = 512.0
+margin_bottom = 512.0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Space" parent="." instance=ExtResource( 4 )]
