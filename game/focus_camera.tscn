@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://game/hdr.png" type="Texture" id=1]
-[ext_resource path="res://focus.gd" type="Script" id=2]
+[ext_resource path="res://game/focus.gd" type="Script" id=2]
 
 [sub_resource type="PanoramaSky" id=1]
 panorama = ExtResource( 1 )
