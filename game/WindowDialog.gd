@@ -1,5 +1,5 @@
 extends WindowDialog
 
 func _ready():
-	popup();
+	call_deferred("popup");
 	get_close_button().hide();

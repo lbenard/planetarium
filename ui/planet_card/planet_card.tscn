@@ -22,8 +22,8 @@ corner_radius_top_right = 8
 [node name="PlanetCard" type="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -1420.0
-margin_bottom = -780.0
+margin_right = -701.0
+margin_bottom = -314.0
 rect_clip_content = true
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 4 )
@@ -40,7 +40,7 @@ __meta__ = {
 }
 
 [node name="Panel" type="Panel" parent="VBoxContainer"]
-margin_right = 500.0
+margin_right = 579.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 0, 60 )
 custom_styles/panel = SubResource( 2 )
@@ -62,7 +62,7 @@ __meta__ = {
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Panel/MarginContainer"]
 margin_left = 16.0
 margin_top = 8.0
-margin_right = 484.0
+margin_right = 563.0
 margin_bottom = 52.0
 custom_constants/separation = 16
 
@@ -78,22 +78,22 @@ script = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer"]
 margin_left = 60.0
-margin_right = 468.0
+margin_right = 547.0
 margin_bottom = 44.0
 rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 5
 theme = ExtResource( 1 )
 text = "Test"
-valign = 1
+valign = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 margin_top = 60.0
-margin_right = 500.0
-margin_bottom = 300.0
+margin_right = 579.0
+margin_bottom = 406.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 16
@@ -104,8 +104,8 @@ custom_constants/margin_bottom = 16
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MarginContainer"]
 margin_left = 16.0
 margin_top = 16.0
-margin_right = 484.0
-margin_bottom = 224.0
+margin_right = 563.0
+margin_bottom = 330.0
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/MarginContainer/ScrollContainer"]
 margin_right = 447.0

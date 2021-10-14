@@ -1,7 +1,6 @@
 extends Node
 
 onready var space = $Space;
-onready var planet_card = $MarginContainer/VBoxContainer/HBoxContainer2/PlanetCard;
 
 func _ready():
 	# Generate the origin chunk

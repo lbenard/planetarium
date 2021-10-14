@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "Building",
+"language": "GDScript",
+"path": "res://building/building.gd"
+}, {
 "base": "Resource",
 "class": "Element",
 "language": "GDScript",
@@ -38,6 +43,16 @@ _global_script_classes=[ {
 "class": "GaussianRandom",
 "language": "GDScript",
 "path": "res://gaussian_random.gd"
+}, {
+"base": "Miner",
+"class": "IronMiner",
+"language": "GDScript",
+"path": "res://building/miner/iron_miner.gd"
+}, {
+"base": "Building",
+"class": "Miner",
+"language": "GDScript",
+"path": "res://building/miner/miner.gd"
 }, {
 "base": "Stellar",
 "class": "Planet",
@@ -69,24 +84,33 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://stellar/stellar.gd"
 }, {
+"base": "Building",
+"class": "TestBuilding",
+"language": "GDScript",
+"path": "res://building/test_building.gd"
+}, {
 "base": "Formation",
 "class": "Universe",
 "language": "GDScript",
 "path": "res://formation/universe/universe.gd"
 } ]
 _global_script_class_icons={
+"Building": "",
 "Element": "",
 "ElementSet": "",
 "FocusCamera": "",
 "Formation": "",
 "Galaxy": "",
 "GaussianRandom": "",
+"IronMiner": "",
+"Miner": "",
 "Planet": "",
 "PlanetCard": "",
 "SolarSystem": "",
 "Space": "",
 "StandardElementSet": "",
 "Stellar": "",
+"TestBuilding": "",
 "Universe": ""
 }
 
@@ -101,6 +125,7 @@ boot_splash/bg_color=Color( 0.192157, 0.12549, 0.12549, 1 )
 
 GameEvents="*res://events/game_events.gd"
 Elements="*res://resources/elements.gd"
+BuildingManager="*res://building/building_manager.gd"
 
 [debug]
 
@@ -109,9 +134,9 @@ gdscript/warnings/return_value_discarded=false
 
 [display]
 
-window/size/width=1920
-window/size/height=1080
-window/vsync/use_vsync=false
+window/size/width=1280
+window/size/height=720
+window/dpi/allow_hidpi=true
 window/stretch/mode="2d"
 window/stretch/aspect="expand"
 

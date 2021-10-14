@@ -3,7 +3,6 @@ class_name PlanetCard
 
 var planet: Planet = null setget _set_planet;
 onready var title_label = $VBoxContainer/Panel/MarginContainer/HBoxContainer/Label;
-onready var primary_panel: Panel = $Panel;
 onready var grid_container: GridContainer = $VBoxContainer/MarginContainer/ScrollContainer/GridContainer;
 onready var style = ($VBoxContainer/Panel).get_stylebox("panel");
 
@@ -26,11 +25,18 @@ func _set_planet(value: Planet):
 	_add_separator("Composition");
 	_add_atmosphere(planet.atmosphere);
 	_add_elements(planet.elements);
+	
+	_add_separator("Electricity");
+	_add_electricity_production(planet.electricity_production);
+	_add_electricity_consumption(planet.electricity_consumption);
 
 func _add_separator(title: String):
 	var label = Label.new()
 	label.text = title;
 	label.add_font_override("font", separator_font);
+	if grid_container.get_children().size() != 0:
+		grid_container.add_child(HSeparator.new());
+		grid_container.add_child(HSeparator.new());
 	grid_container.add_child(label);
 	grid_container.add_child(Control.new());
 
@@ -65,3 +71,23 @@ func _get_element_name(element: Element) -> String:
 		return "%s (%s)" % [element.name, element.short];
 	else:
 		return element.name;
+
+func _add_electricity_production(production: float):
+	var title = Label.new();
+	var content = Label.new();
+	
+	title.text = "Production";
+	title.add_font_override("font", entry_font);
+	content.text = "%s W" % int(production);
+	grid_container.add_child(title);
+	grid_container.add_child(content);
+
+func _add_electricity_consumption(consumption: float):
+	var title = Label.new();
+	var content = Label.new();
+	
+	title.text = "Consumption";
+	title.add_font_override("font", entry_font);
+	content.text = "%s W" % int(consumption);
+	grid_container.add_child(title);
+	grid_container.add_child(content);
