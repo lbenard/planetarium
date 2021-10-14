@@ -1,0 +1,309 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://themes/ui.tres" type="Theme" id=1]
+[ext_resource path="res://ui/planet_card/entry_font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://ui/planet_card/icon.gd" type="Script" id=3]
+[ext_resource path="res://ui/planet_card/planet_card.gd" type="Script" id=4]
+[ext_resource path="res://ui/planet_card/planet.png" type="Texture" id=5]
+[ext_resource path="res://ui/planet_card/separator_font.tres" type="DynamicFont" id=6]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.262745, 0.262745, 0.262745, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.2688, 0.48, 0.34624, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+
+[node name="PlanetCard" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1420.0
+margin_bottom = -780.0
+rect_clip_content = true
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="VBoxContainer"]
+margin_right = 500.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 0, 60 )
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 16
+custom_constants/margin_top = 8
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Panel/MarginContainer"]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 484.0
+margin_bottom = 52.0
+custom_constants/separation = 16
+
+[node name="Icon" type="TextureRect" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer"]
+margin_right = 44.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 44, 0 )
+size_flags_vertical = 3
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 5
+script = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer"]
+margin_left = 60.0
+margin_right = 468.0
+margin_bottom = 44.0
+rect_clip_content = true
+size_flags_horizontal = 3
+size_flags_vertical = 5
+theme = ExtResource( 1 )
+text = "Test"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 60.0
+margin_right = 500.0
+margin_bottom = 300.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MarginContainer"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 484.0
+margin_bottom = 224.0
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/MarginContainer/ScrollContainer"]
+margin_right = 447.0
+margin_bottom = 298.0
+custom_constants/hseparation = 16
+columns = 2
+
+[node name="Composition" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+margin_right = 206.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 6 )
+text = "Composition"
+
+[node name="Control" type="Control" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+margin_left = 222.0
+margin_right = 447.0
+margin_bottom = 26.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Atmosphere" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+margin_top = 30.0
+margin_right = 206.0
+margin_bottom = 50.0
+custom_fonts/font = ExtResource( 2 )
+text = "Atmosphere"
+
+[node name="AtmosphereContent" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+margin_left = 222.0
+margin_top = 33.0
+margin_right = 447.0
+margin_bottom = 47.0
+text = "Green stuff"
+
+[node name="Materials" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+margin_top = 54.0
+margin_right = 206.0
+margin_bottom = 74.0
+custom_fonts/font = ExtResource( 2 )
+text = "Materials"
+
+[node name="MaterialsContent" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+margin_left = 222.0
+margin_top = 57.0
+margin_right = 447.0
+margin_bottom = 71.0
+text = "Probably more green stuff but solid"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+margin_top = 78.0
+margin_right = 206.0
+margin_bottom = 82.0
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+margin_left = 222.0
+margin_top = 78.0
+margin_right = 447.0
+margin_bottom = 82.0
+
+[node name="Buildings" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+margin_top = 86.0
+margin_right = 206.0
+margin_bottom = 112.0
+custom_fonts/font = ExtResource( 6 )
+text = "Buildings"
+
+[node name="Control2" type="Control" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+margin_left = 222.0
+margin_top = 86.0
+margin_right = 447.0
+margin_bottom = 112.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpaceElevator" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+margin_top = 118.0
+margin_right = 206.0
+margin_bottom = 138.0
+custom_fonts/font = ExtResource( 2 )
+text = "Space Elevator"
+
+[node name="SpaceElevatorAmount" type="SpinBox" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+margin_left = 222.0
+margin_top = 116.0
+margin_right = 447.0
+margin_bottom = 140.0
+value = 1.0
+
+[node name="GreenStuffExtractor" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+margin_top = 146.0
+margin_right = 206.0
+margin_bottom = 166.0
+custom_fonts/font = ExtResource( 2 )
+text = "Green stuff extractor"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GreenStuffExtractorAmount" type="SpinBox" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+margin_left = 222.0
+margin_top = 144.0
+margin_right = 447.0
+margin_bottom = 168.0
+value = 1.0
+
+[node name="LaunchPad" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+margin_top = 174.0
+margin_right = 206.0
+margin_bottom = 194.0
+custom_fonts/font = ExtResource( 2 )
+text = "Launch Pad"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LaunchPadAmount" type="SpinBox" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+margin_left = 222.0
+margin_top = 172.0
+margin_right = 447.0
+margin_bottom = 196.0
+value = 5.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AntimatterProducer" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+margin_top = 202.0
+margin_right = 206.0
+margin_bottom = 222.0
+custom_fonts/font = ExtResource( 2 )
+text = "Antimatter Producer"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AntimatterProducerAmount" type="SpinBox" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+margin_left = 222.0
+margin_top = 200.0
+margin_right = 447.0
+margin_bottom = 224.0
+value = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+margin_top = 228.0
+margin_right = 206.0
+margin_bottom = 232.0
+
+[node name="HSeparator4" type="HSeparator" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+margin_left = 222.0
+margin_top = 228.0
+margin_right = 447.0
+margin_bottom = 232.0
+
+[node name="Energy" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+margin_top = 236.0
+margin_right = 206.0
+margin_bottom = 262.0
+custom_fonts/font = ExtResource( 6 )
+text = "Energy"
+
+[node name="Control3" type="Control" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+margin_left = 222.0
+margin_top = 236.0
+margin_right = 447.0
+margin_bottom = 262.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EnergyProduction" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+margin_top = 266.0
+margin_right = 206.0
+margin_bottom = 280.0
+text = "Energy Production"
+
+[node name="EnergyProductionAmount" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+margin_left = 222.0
+margin_top = 266.0
+margin_right = 447.0
+margin_bottom = 280.0
+text = "50 GWh"
+
+[node name="EnergyConsumption" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+margin_top = 284.0
+margin_right = 206.0
+margin_bottom = 298.0
+text = "Energy Consumption"
+
+[node name="EnergyConsumptionAmount" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+margin_left = 222.0
+margin_top = 284.0
+margin_right = 447.0
+margin_bottom = 298.0
+text = "30 GWh"
+
+[connection signal="resized" from="VBoxContainer/Panel/MarginContainer/HBoxContainer/Icon" to="VBoxContainer/Panel/MarginContainer/HBoxContainer/Icon" method="_on_Icon_resized"]

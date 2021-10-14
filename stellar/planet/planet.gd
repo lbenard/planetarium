@@ -1,6 +1,8 @@
 extends Stellar
 class_name Planet
 
+var atmosphere: Dictionary = {};
+
 export(NodePath) var mesh = MeshInstance.new();
 export var rotation_speed: float = 1.0;
 

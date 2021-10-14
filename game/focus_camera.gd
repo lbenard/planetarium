@@ -1,4 +1,5 @@
 extends Spatial
+class_name FocusCamera
 
 onready var focused_planet: Planet;
 var margin = 1.0;
@@ -7,8 +8,6 @@ export var drag_speed = 2.0;
 
 var drag_previous_pos: Vector2;
 var rotation_velocity = Vector2.ZERO;
-
-signal on_focus;
 
 func _process(delta):
 	if focused_planet:
@@ -49,7 +48,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_focus_next"):
 		var solar_system: SolarSystem = focused_planet.get_parent();
 		var next_planet_id = (solar_system.planets.find(focused_planet) + 1) % solar_system.planets.size();
-		focus(solar_system.planets[next_planet_id]);
+		planet_focus(solar_system.planets[next_planet_id]);
 	
 	rotation_velocity = rotation_velocity - rotation_velocity * delta;
 	rotation += Vector3(rotation_velocity.y, rotation_velocity.x, 0);
@@ -62,7 +61,7 @@ func _get_mouse_diff(original: Vector2, new: Vector2) -> Vector2:
 	diff = diff / get_viewport().size * drag_speed;
 	return diff;
 
-func focus(planet):
+func planet_focus(planet: Planet):
 	focused_planet = planet;
 	var camera = $Camera;
 	# Multiplied so the max radius doesn't fill the screen
@@ -75,4 +74,4 @@ func focus(planet):
 	translation = center;
 	camera.look_at(center, Vector3.UP);
 	
-	emit_signal("on_focus");
+	GameEvents.emit_signal("planet_focus", planet);

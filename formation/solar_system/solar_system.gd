@@ -29,7 +29,12 @@ func _ready():
 			distance = gaussian_rng.gaussian_clamp(sun_mesh.radius * 6, sun_mesh.radius, sun_mesh.radius * 3);
 			
 			# First planet also has a specific set of starting resources
-			new_planet.resources_set = preload("res://resources/first_resources_set.tres");
+			new_planet.atmosphere[Elements.standard.oxygen] = 10;
+			new_planet.atmosphere[Elements.standard.nitrogen] = 10;
+			
+			new_planet.elements[Elements.standard.hydrogen] = 20;
+			new_planet.elements[Elements.standard.silicon] = 10;
+			new_planet.elements[Elements.standard.carbon] = 5;
 		else:
 			# The others gets generated further starting from the last one
 			#distance = last_planet.translation.x + gaussian_rng.gaussian_clamp(first_planet.translation.x, last_planet.translation.x * 3, last_planet.translation.x * 2);
