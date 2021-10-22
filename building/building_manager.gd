@@ -1,6 +1,6 @@
 extends Node
 
-var test_building: Building = TestBuilding.new();
+var iron_miner: Building = IronMiner.new();
 
 var timer = Timer.new();
 var buildings = [];
@@ -8,7 +8,7 @@ var buildings = [];
 func _init():
 	add_child(timer);
 	buildings = [
-		test_building
+		iron_miner
 	];
 
 func _ready():

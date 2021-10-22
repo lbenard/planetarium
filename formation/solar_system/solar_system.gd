@@ -36,7 +36,7 @@ func _ready():
 			new_planet.elements[Elements.standard.silicon] = 10;
 			new_planet.elements[Elements.standard.carbon] = 5;
 			
-			BuildingManager.test_building.build_on(new_planet);
+			BuildingManager.iron_miner.build_on(new_planet);
 		else:
 			# The others gets generated further starting from the last one
 			#distance = last_planet.translation.x + gaussian_rng.gaussian_clamp(first_planet.translation.x, last_planet.translation.x * 3, last_planet.translation.x * 2);

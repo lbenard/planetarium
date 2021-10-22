@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://themes/ui.tres" type="Theme" id=1]
 [ext_resource path="res://ui/planet_card/entry_font.tres" type="DynamicFont" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://ui/planet_card/planet_card.gd" type="Script" id=4]
 [ext_resource path="res://ui/planet_card/planet.png" type="Texture" id=5]
 [ext_resource path="res://ui/planet_card/separator_font.tres" type="DynamicFont" id=6]
+[ext_resource path="res://ui/planet_card/composition_grid.gd" type="Script" id=7]
+[ext_resource path="res://ui/planet_card/buildings_grid.gd" type="Script" id=8]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.262745, 0.262745, 0.262745, 1 )
@@ -107,203 +109,205 @@ margin_top = 16.0
 margin_right = 563.0
 margin_bottom = 330.0
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer/MarginContainer/ScrollContainer"]
-margin_right = 447.0
-margin_bottom = 298.0
+[node name="Control" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer"]
+margin_right = 400.0
+margin_bottom = 244.0
+custom_constants/separation = 32
+
+[node name="CompositionGrid" type="GridContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/Control"]
+margin_right = 400.0
+margin_bottom = 74.0
 custom_constants/hseparation = 16
 columns = 2
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Composition" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
-margin_right = 206.0
+[node name="Composition" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/CompositionGrid"]
+margin_right = 159.0
 margin_bottom = 26.0
 custom_fonts/font = ExtResource( 6 )
 text = "Composition"
 
-[node name="Control" type="Control" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
-margin_left = 222.0
-margin_right = 447.0
+[node name="Control" type="Control" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/CompositionGrid"]
+margin_left = 175.0
+margin_right = 400.0
 margin_bottom = 26.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Atmosphere" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+[node name="Atmosphere" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/CompositionGrid"]
 margin_top = 30.0
-margin_right = 206.0
+margin_right = 159.0
 margin_bottom = 50.0
 custom_fonts/font = ExtResource( 2 )
 text = "Atmosphere"
 
-[node name="AtmosphereContent" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
-margin_left = 222.0
+[node name="AtmosphereContent" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/CompositionGrid"]
+margin_left = 175.0
 margin_top = 33.0
-margin_right = 447.0
+margin_right = 400.0
 margin_bottom = 47.0
 text = "Green stuff"
 
-[node name="Materials" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+[node name="Elements" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/CompositionGrid"]
 margin_top = 54.0
-margin_right = 206.0
+margin_right = 159.0
 margin_bottom = 74.0
 custom_fonts/font = ExtResource( 2 )
-text = "Materials"
+text = "Elements"
 
-[node name="MaterialsContent" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
-margin_left = 222.0
+[node name="ElementsContent" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/CompositionGrid"]
+margin_left = 175.0
 margin_top = 57.0
-margin_right = 447.0
+margin_right = 400.0
 margin_bottom = 71.0
 text = "Probably more green stuff but solid"
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
-margin_top = 78.0
-margin_right = 206.0
-margin_bottom = 82.0
+[node name="BuildingsGrid" type="GridContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/Control"]
+margin_top = 106.0
+margin_right = 400.0
+margin_bottom = 244.0
+custom_constants/hseparation = 16
+columns = 2
+script = ExtResource( 8 )
 
-[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
-margin_left = 222.0
-margin_top = 78.0
-margin_right = 447.0
-margin_bottom = 82.0
-
-[node name="Buildings" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
-margin_top = 86.0
+[node name="Buildings" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/BuildingsGrid"]
 margin_right = 206.0
-margin_bottom = 112.0
+margin_bottom = 26.0
 custom_fonts/font = ExtResource( 6 )
 text = "Buildings"
 
-[node name="Control2" type="Control" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+[node name="Control2" type="Control" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/BuildingsGrid"]
 margin_left = 222.0
-margin_top = 86.0
-margin_right = 447.0
-margin_bottom = 112.0
+margin_right = 296.0
+margin_bottom = 26.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SpaceElevator" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
-margin_top = 118.0
+[node name="SpaceElevator" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/BuildingsGrid"]
+margin_top = 32.0
 margin_right = 206.0
-margin_bottom = 138.0
+margin_bottom = 52.0
 custom_fonts/font = ExtResource( 2 )
 text = "Space Elevator"
 
-[node name="SpaceElevatorAmount" type="SpinBox" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+[node name="SpaceElevatorAmount" type="SpinBox" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/BuildingsGrid"]
 margin_left = 222.0
-margin_top = 116.0
-margin_right = 447.0
-margin_bottom = 140.0
+margin_top = 30.0
+margin_right = 296.0
+margin_bottom = 54.0
 value = 1.0
 
-[node name="GreenStuffExtractor" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
-margin_top = 146.0
+[node name="GreenStuffExtractor" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/BuildingsGrid"]
+margin_top = 60.0
 margin_right = 206.0
-margin_bottom = 166.0
+margin_bottom = 80.0
 custom_fonts/font = ExtResource( 2 )
 text = "Green stuff extractor"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GreenStuffExtractorAmount" type="SpinBox" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+[node name="GreenStuffExtractorAmount" type="SpinBox" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/BuildingsGrid"]
 margin_left = 222.0
-margin_top = 144.0
-margin_right = 447.0
-margin_bottom = 168.0
+margin_top = 58.0
+margin_right = 296.0
+margin_bottom = 82.0
 value = 1.0
 
-[node name="LaunchPad" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
-margin_top = 174.0
+[node name="LaunchPad" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/BuildingsGrid"]
+margin_top = 88.0
 margin_right = 206.0
-margin_bottom = 194.0
+margin_bottom = 108.0
 custom_fonts/font = ExtResource( 2 )
 text = "Launch Pad"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LaunchPadAmount" type="SpinBox" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+[node name="LaunchPadAmount" type="SpinBox" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/BuildingsGrid"]
 margin_left = 222.0
-margin_top = 172.0
-margin_right = 447.0
-margin_bottom = 196.0
+margin_top = 86.0
+margin_right = 296.0
+margin_bottom = 110.0
 value = 5.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AntimatterProducer" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
-margin_top = 202.0
+[node name="AntimatterProducer" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/BuildingsGrid"]
+margin_top = 116.0
 margin_right = 206.0
-margin_bottom = 222.0
+margin_bottom = 136.0
 custom_fonts/font = ExtResource( 2 )
 text = "Antimatter Producer"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AntimatterProducerAmount" type="SpinBox" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
+[node name="AntimatterProducerAmount" type="SpinBox" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/BuildingsGrid"]
 margin_left = 222.0
-margin_top = 200.0
-margin_right = 447.0
-margin_bottom = 224.0
+margin_top = 114.0
+margin_right = 296.0
+margin_bottom = 138.0
 value = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HSeparator3" type="HSeparator" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
-margin_top = 228.0
-margin_right = 206.0
-margin_bottom = 232.0
+[node name="RefreshTimer" type="Timer" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/BuildingsGrid"]
 
-[node name="HSeparator4" type="HSeparator" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
-margin_left = 222.0
-margin_top = 228.0
-margin_right = 447.0
-margin_bottom = 232.0
+[node name="EnergyGrid" type="GridContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/Control"]
+visible = false
+margin_top = 106.0
+margin_right = 400.0
+margin_bottom = 168.0
+custom_constants/hseparation = 16
+columns = 2
 
-[node name="Energy" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
-margin_top = 236.0
-margin_right = 206.0
-margin_bottom = 262.0
+[node name="Energy" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/EnergyGrid"]
+margin_right = 131.0
+margin_bottom = 26.0
 custom_fonts/font = ExtResource( 6 )
 text = "Energy"
 
-[node name="Control3" type="Control" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
-margin_left = 222.0
-margin_top = 236.0
-margin_right = 447.0
-margin_bottom = 262.0
+[node name="Control3" type="Control" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/EnergyGrid"]
+margin_left = 147.0
+margin_right = 198.0
+margin_bottom = 26.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EnergyProduction" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
-margin_top = 266.0
-margin_right = 206.0
-margin_bottom = 280.0
+[node name="EnergyProduction" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/EnergyGrid"]
+margin_top = 30.0
+margin_right = 131.0
+margin_bottom = 44.0
 text = "Energy Production"
 
-[node name="EnergyProductionAmount" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
-margin_left = 222.0
-margin_top = 266.0
-margin_right = 447.0
-margin_bottom = 280.0
+[node name="EnergyProductionAmount" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/EnergyGrid"]
+margin_left = 147.0
+margin_top = 30.0
+margin_right = 198.0
+margin_bottom = 44.0
 text = "50 GWh"
 
-[node name="EnergyConsumption" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
-margin_top = 284.0
-margin_right = 206.0
-margin_bottom = 298.0
+[node name="EnergyConsumption" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/EnergyGrid"]
+margin_top = 48.0
+margin_right = 131.0
+margin_bottom = 62.0
 text = "Energy Consumption"
 
-[node name="EnergyConsumptionAmount" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/GridContainer"]
-margin_left = 222.0
-margin_top = 284.0
-margin_right = 447.0
-margin_bottom = 298.0
+[node name="EnergyConsumptionAmount" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/EnergyGrid"]
+margin_left = 147.0
+margin_top = 48.0
+margin_right = 198.0
+margin_bottom = 62.0
 text = "30 GWh"
 
 [connection signal="resized" from="VBoxContainer/Panel/MarginContainer/HBoxContainer/Icon" to="VBoxContainer/Panel/MarginContainer/HBoxContainer/Icon" method="_on_Icon_resized"]
+[connection signal="timeout" from="VBoxContainer/MarginContainer/ScrollContainer/Control/BuildingsGrid/RefreshTimer" to="VBoxContainer/MarginContainer/ScrollContainer/Control/BuildingsGrid" method="_on_RefreshTimer_timeout"]
