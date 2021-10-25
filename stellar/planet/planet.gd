@@ -1,4 +1,4 @@
-	extends Stellar
+extends Stellar
 class_name Planet
 
 var atmosphere: Dictionary = {};

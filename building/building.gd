@@ -15,6 +15,7 @@ func build_on(stellar: Stellar):
 	if not stellar in stellars_buildings:
 		stellars_buildings[stellar] = 0;
 	stellars_buildings[stellar] += 1;
+	GameEvents.emit_signal("building_created", self, stellar);
 
 
 func tick():

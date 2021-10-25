@@ -111,7 +111,7 @@ margin_bottom = 330.0
 
 [node name="Control" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer"]
 margin_right = 400.0
-margin_bottom = 244.0
+margin_bottom = 132.0
 custom_constants/separation = 32
 
 [node name="CompositionGrid" type="GridContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/Control"]
@@ -169,97 +169,24 @@ text = "Probably more green stuff but solid"
 [node name="BuildingsGrid" type="GridContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/Control"]
 margin_top = 106.0
 margin_right = 400.0
-margin_bottom = 244.0
+margin_bottom = 132.0
 custom_constants/hseparation = 16
 columns = 2
 script = ExtResource( 8 )
 
 [node name="Buildings" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/BuildingsGrid"]
-margin_right = 206.0
+margin_right = 117.0
 margin_bottom = 26.0
 custom_fonts/font = ExtResource( 6 )
 text = "Buildings"
 
 [node name="Control2" type="Control" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/BuildingsGrid"]
-margin_left = 222.0
-margin_right = 296.0
+margin_left = 133.0
+margin_right = 133.0
 margin_bottom = 26.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="SpaceElevator" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/BuildingsGrid"]
-margin_top = 32.0
-margin_right = 206.0
-margin_bottom = 52.0
-custom_fonts/font = ExtResource( 2 )
-text = "Space Elevator"
-
-[node name="SpaceElevatorAmount" type="SpinBox" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/BuildingsGrid"]
-margin_left = 222.0
-margin_top = 30.0
-margin_right = 296.0
-margin_bottom = 54.0
-value = 1.0
-
-[node name="GreenStuffExtractor" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/BuildingsGrid"]
-margin_top = 60.0
-margin_right = 206.0
-margin_bottom = 80.0
-custom_fonts/font = ExtResource( 2 )
-text = "Green stuff extractor"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="GreenStuffExtractorAmount" type="SpinBox" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/BuildingsGrid"]
-margin_left = 222.0
-margin_top = 58.0
-margin_right = 296.0
-margin_bottom = 82.0
-value = 1.0
-
-[node name="LaunchPad" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/BuildingsGrid"]
-margin_top = 88.0
-margin_right = 206.0
-margin_bottom = 108.0
-custom_fonts/font = ExtResource( 2 )
-text = "Launch Pad"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="LaunchPadAmount" type="SpinBox" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/BuildingsGrid"]
-margin_left = 222.0
-margin_top = 86.0
-margin_right = 296.0
-margin_bottom = 110.0
-value = 5.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="AntimatterProducer" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/BuildingsGrid"]
-margin_top = 116.0
-margin_right = 206.0
-margin_bottom = 136.0
-custom_fonts/font = ExtResource( 2 )
-text = "Antimatter Producer"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="AntimatterProducerAmount" type="SpinBox" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/BuildingsGrid"]
-margin_left = 222.0
-margin_top = 114.0
-margin_right = 296.0
-margin_bottom = 138.0
-value = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="RefreshTimer" type="Timer" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/BuildingsGrid"]
 
 [node name="EnergyGrid" type="GridContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/Control"]
 visible = false
@@ -310,4 +237,3 @@ margin_bottom = 62.0
 text = "30 GWh"
 
 [connection signal="resized" from="VBoxContainer/Panel/MarginContainer/HBoxContainer/Icon" to="VBoxContainer/Panel/MarginContainer/HBoxContainer/Icon" method="_on_Icon_resized"]
-[connection signal="timeout" from="VBoxContainer/MarginContainer/ScrollContainer/Control/BuildingsGrid/RefreshTimer" to="VBoxContainer/MarginContainer/ScrollContainer/Control/BuildingsGrid" method="_on_RefreshTimer_timeout"]
