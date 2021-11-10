@@ -1,11 +1,11 @@
-extends Panel
+extends Control
 class_name PlanetCard
 
 var planet: Planet = null setget _set_planet;
-onready var composition_grid = $VBoxContainer/MarginContainer/ScrollContainer/Control/CompositionGrid;
-onready var buildings_grid = $VBoxContainer/MarginContainer/ScrollContainer/Control/BuildingsGrid;
-onready var title_label = $VBoxContainer/Panel/MarginContainer/HBoxContainer/Label;
-onready var style = ($VBoxContainer/Panel).get_stylebox("panel");
+onready var composition_grid = $Card/VBoxContainer/MarginContainer/Content/ScrollContainer/VBoxContainer/CompositionGrid;
+onready var buildings_grid = $Card/VBoxContainer/MarginContainer/Content/ScrollContainer/VBoxContainer/BuildingsGrid;
+onready var title_label = $Card/VBoxContainer/Panel/MarginContainer/Title/HBoxContainer/Label;
+onready var style = ($Card/VBoxContainer/Panel).get_stylebox("panel");
 
 var separator_font = preload("res://ui/planet_card/separator_font.tres");
 var entry_font = preload("res://ui/planet_card/entry_font.tres");

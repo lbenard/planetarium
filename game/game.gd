@@ -1,6 +1,6 @@
 extends Node
 
-onready var space = $Space;
+onready var space = $Control/HBoxContainer/Control/ViewportContainer/Viewport/Space;
 
 func _ready():
 	# Generate the origin chunk

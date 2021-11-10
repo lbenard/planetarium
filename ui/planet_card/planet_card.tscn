@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://themes/ui.tres" type="Theme" id=1]
 [ext_resource path="res://ui/planet_card/entry_font.tres" type="DynamicFont" id=2]
@@ -8,67 +8,38 @@
 [ext_resource path="res://ui/planet_card/separator_font.tres" type="DynamicFont" id=6]
 [ext_resource path="res://ui/planet_card/composition_grid.gd" type="Script" id=7]
 [ext_resource path="res://ui/planet_card/buildings_grid.gd" type="Script" id=8]
+[ext_resource path="res://ui/card/card.tscn" type="PackedScene" id=9]
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.262745, 0.262745, 0.262745, 1 )
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.2688, 0.48, 0.34624, 1 )
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-
-[node name="PlanetCard" type="Panel"]
+[node name="PlanetCard" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -701.0
-margin_bottom = -314.0
+margin_right = -810.0
+margin_bottom = -325.0
 rect_clip_content = true
-custom_styles/panel = SubResource( 1 )
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Card" parent="." instance=ExtResource( 9 )]
+margin_right = 0.0
+margin_bottom = 0.0
+
+[node name="Panel" parent="Card/VBoxContainer" index="0"]
+margin_right = 470.0
+
+[node name="Title" parent="Card/VBoxContainer/Panel/MarginContainer" index="0"]
+margin_right = 454.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Card/VBoxContainer/Panel/MarginContainer/Title" index="0"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/separation = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Panel" type="Panel" parent="VBoxContainer"]
-margin_right = 579.0
-margin_bottom = 60.0
-rect_min_size = Vector2( 0, 60 )
-custom_styles/panel = SubResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Panel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_constants/margin_right = 16
-custom_constants/margin_top = 8
-custom_constants/margin_left = 16
-custom_constants/margin_bottom = 8
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Panel/MarginContainer"]
-margin_left = 16.0
-margin_top = 8.0
-margin_right = 563.0
-margin_bottom = 52.0
 custom_constants/separation = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Icon" type="TextureRect" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer"]
+[node name="Icon" type="TextureRect" parent="Card/VBoxContainer/Panel/MarginContainer/Title/HBoxContainer"]
 margin_right = 44.0
 margin_bottom = 44.0
 rect_min_size = Vector2( 44, 0 )
@@ -78,9 +49,9 @@ expand = true
 stretch_mode = 5
 script = ExtResource( 3 )
 
-[node name="Label" type="Label" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="Card/VBoxContainer/Panel/MarginContainer/Title/HBoxContainer"]
 margin_left = 60.0
-margin_right = 547.0
+margin_right = 438.0
 margin_bottom = 44.0
 rect_clip_content = true
 size_flags_horizontal = 3
@@ -92,29 +63,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 60.0
-margin_right = 579.0
-margin_bottom = 406.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/margin_right = 16
-custom_constants/margin_top = 16
-custom_constants/margin_left = 16
-custom_constants/margin_bottom = 16
+[node name="MarginContainer" parent="Card/VBoxContainer" index="1"]
+margin_right = 470.0
+margin_bottom = 395.0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MarginContainer"]
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 563.0
-margin_bottom = 330.0
+[node name="Content" parent="Card/VBoxContainer/MarginContainer" index="0"]
+margin_right = 454.0
+margin_bottom = 319.0
 
-[node name="Control" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Card/VBoxContainer/MarginContainer/Content" index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Card/VBoxContainer/MarginContainer/Content/ScrollContainer"]
 margin_right = 400.0
 margin_bottom = 132.0
 custom_constants/separation = 32
 
-[node name="CompositionGrid" type="GridContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/Control"]
+[node name="CompositionGrid" type="GridContainer" parent="Card/VBoxContainer/MarginContainer/Content/ScrollContainer/VBoxContainer"]
 margin_right = 400.0
 margin_bottom = 74.0
 custom_constants/hseparation = 16
@@ -124,13 +93,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Composition" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/CompositionGrid"]
+[node name="Composition" type="Label" parent="Card/VBoxContainer/MarginContainer/Content/ScrollContainer/VBoxContainer/CompositionGrid"]
 margin_right = 159.0
 margin_bottom = 26.0
 custom_fonts/font = ExtResource( 6 )
 text = "Composition"
 
-[node name="Control" type="Control" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/CompositionGrid"]
+[node name="Control" type="Control" parent="Card/VBoxContainer/MarginContainer/Content/ScrollContainer/VBoxContainer/CompositionGrid"]
 margin_left = 175.0
 margin_right = 400.0
 margin_bottom = 26.0
@@ -138,35 +107,35 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Atmosphere" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/CompositionGrid"]
+[node name="Atmosphere" type="Label" parent="Card/VBoxContainer/MarginContainer/Content/ScrollContainer/VBoxContainer/CompositionGrid"]
 margin_top = 30.0
 margin_right = 159.0
 margin_bottom = 50.0
 custom_fonts/font = ExtResource( 2 )
 text = "Atmosphere"
 
-[node name="AtmosphereContent" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/CompositionGrid"]
+[node name="AtmosphereContent" type="Label" parent="Card/VBoxContainer/MarginContainer/Content/ScrollContainer/VBoxContainer/CompositionGrid"]
 margin_left = 175.0
 margin_top = 33.0
 margin_right = 400.0
 margin_bottom = 47.0
 text = "Green stuff"
 
-[node name="Elements" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/CompositionGrid"]
+[node name="Elements" type="Label" parent="Card/VBoxContainer/MarginContainer/Content/ScrollContainer/VBoxContainer/CompositionGrid"]
 margin_top = 54.0
 margin_right = 159.0
 margin_bottom = 74.0
 custom_fonts/font = ExtResource( 2 )
 text = "Elements"
 
-[node name="ElementsContent" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/CompositionGrid"]
+[node name="ElementsContent" type="Label" parent="Card/VBoxContainer/MarginContainer/Content/ScrollContainer/VBoxContainer/CompositionGrid"]
 margin_left = 175.0
 margin_top = 57.0
 margin_right = 400.0
 margin_bottom = 71.0
 text = "Probably more green stuff but solid"
 
-[node name="BuildingsGrid" type="GridContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/Control"]
+[node name="BuildingsGrid" type="GridContainer" parent="Card/VBoxContainer/MarginContainer/Content/ScrollContainer/VBoxContainer"]
 margin_top = 106.0
 margin_right = 400.0
 margin_bottom = 132.0
@@ -174,13 +143,13 @@ custom_constants/hseparation = 16
 columns = 2
 script = ExtResource( 8 )
 
-[node name="Buildings" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/BuildingsGrid"]
+[node name="Buildings" type="Label" parent="Card/VBoxContainer/MarginContainer/Content/ScrollContainer/VBoxContainer/BuildingsGrid"]
 margin_right = 117.0
 margin_bottom = 26.0
 custom_fonts/font = ExtResource( 6 )
 text = "Buildings"
 
-[node name="Control2" type="Control" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/BuildingsGrid"]
+[node name="Control2" type="Control" parent="Card/VBoxContainer/MarginContainer/Content/ScrollContainer/VBoxContainer/BuildingsGrid"]
 margin_left = 133.0
 margin_right = 133.0
 margin_bottom = 26.0
@@ -188,7 +157,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EnergyGrid" type="GridContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/Control"]
+[node name="EnergyGrid" type="GridContainer" parent="Card/VBoxContainer/MarginContainer/Content/ScrollContainer/VBoxContainer"]
 visible = false
 margin_top = 106.0
 margin_right = 400.0
@@ -196,13 +165,13 @@ margin_bottom = 168.0
 custom_constants/hseparation = 16
 columns = 2
 
-[node name="Energy" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/EnergyGrid"]
+[node name="Energy" type="Label" parent="Card/VBoxContainer/MarginContainer/Content/ScrollContainer/VBoxContainer/EnergyGrid"]
 margin_right = 131.0
 margin_bottom = 26.0
 custom_fonts/font = ExtResource( 6 )
 text = "Energy"
 
-[node name="Control3" type="Control" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/EnergyGrid"]
+[node name="Control3" type="Control" parent="Card/VBoxContainer/MarginContainer/Content/ScrollContainer/VBoxContainer/EnergyGrid"]
 margin_left = 147.0
 margin_right = 198.0
 margin_bottom = 26.0
@@ -210,30 +179,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EnergyProduction" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/EnergyGrid"]
+[node name="EnergyProduction" type="Label" parent="Card/VBoxContainer/MarginContainer/Content/ScrollContainer/VBoxContainer/EnergyGrid"]
 margin_top = 30.0
 margin_right = 131.0
 margin_bottom = 44.0
 text = "Energy Production"
 
-[node name="EnergyProductionAmount" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/EnergyGrid"]
+[node name="EnergyProductionAmount" type="Label" parent="Card/VBoxContainer/MarginContainer/Content/ScrollContainer/VBoxContainer/EnergyGrid"]
 margin_left = 147.0
 margin_top = 30.0
 margin_right = 198.0
 margin_bottom = 44.0
 text = "50 GWh"
 
-[node name="EnergyConsumption" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/EnergyGrid"]
+[node name="EnergyConsumption" type="Label" parent="Card/VBoxContainer/MarginContainer/Content/ScrollContainer/VBoxContainer/EnergyGrid"]
 margin_top = 48.0
 margin_right = 131.0
 margin_bottom = 62.0
 text = "Energy Consumption"
 
-[node name="EnergyConsumptionAmount" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/Control/EnergyGrid"]
+[node name="EnergyConsumptionAmount" type="Label" parent="Card/VBoxContainer/MarginContainer/Content/ScrollContainer/VBoxContainer/EnergyGrid"]
 margin_left = 147.0
 margin_top = 48.0
 margin_right = 198.0
 margin_bottom = 62.0
 text = "30 GWh"
 
-[connection signal="resized" from="VBoxContainer/Panel/MarginContainer/HBoxContainer/Icon" to="VBoxContainer/Panel/MarginContainer/HBoxContainer/Icon" method="_on_Icon_resized"]
+[connection signal="resized" from="Card/VBoxContainer/Panel/MarginContainer/Title/HBoxContainer/Icon" to="Card/VBoxContainer/Panel/MarginContainer/Title/HBoxContainer/Icon" method="_on_Icon_resized"]
+
+[editable path="Card"]
